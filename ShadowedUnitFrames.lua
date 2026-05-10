@@ -551,7 +551,6 @@ SlashCmdList["SHADOWEDUF"] = function(msg)
 		return
 	end
 	
-	local loaded, reason = LoadAddOn("ShadowedUF_Options")
 	if( not ShadowUF.Config ) then
 		DEFAULT_CHAT_FRAME:AddMessage(L["Failed to load ShadowedUF_Options, cannot open configuration."])
 		return
