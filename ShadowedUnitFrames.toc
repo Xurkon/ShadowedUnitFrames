@@ -10,14 +10,10 @@
 
 #@no-lib-strip@
 libs\LibStub\LibStub.lua
-libs\CallbackHandler-1.0\CallbackHandler-1.0\CallbackHandler-1.0.xml
+libs\CallbackHandler-1.0\CallbackHandler-1.0.xml
 libs\LibSharedMedia-3.0\lib.xml
+libs\LibHealComm-4.0\LibHealComm-4.0.xml
 libs\AceDB-3.0\AceDB-3.0.xml
-
-options\libs\AceDBOptions-3.0\AceDBOptions-3.0.xml
-options\libs\AceGUI-3.0\AceGUI-3.0.xml
-options\libs\AceGUI-3.0-SharedMediaWidgets\widget.xml
-options\libs\AceConfig-3.0\AceConfig-3.0.xml
 #@end-no-lib-strip@
 
 localization\enUS.lua
@@ -53,6 +49,4 @@ modules\incheal.lua
 modules\range.lua
 modules\empty.lua
 modules\druid.lua
-#@do-not-package@
 options\config.lua
-#@end-do-not-package@
