@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadowed Unit Frames - Developer Documentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #c9d1d9;
+            --text-secondary: #8b949e;
+            --accent-green: #3fb950;
+            --accent-blue: #58a6ff;
+            --accent-purple: #a371f7;
+            --accent-orange: #d29922;
+            --border-color: #30363d;
+            --code-bg: #1b1f23;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1c2128 0%, #0d1117 100%);
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        section {
+            margin-bottom: 80px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--accent-blue);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin: 30px 0 15px;
+            color: var(--text-primary);
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+        }
+
+        code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: var(--code-bg);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: #e6edf3;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .card {
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            background: var(--bg-tertiary);
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(88, 166, 255, 0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover::after {
+            opacity: 1;
+        }
+
+        .card h4 {
+            color: var(--accent-green);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .important {
+            background: rgba(210, 153, 34, 0.05);
+            border: 1px solid rgba(210, 153, 34, 0.2);
+            border-left: 4px solid var(--accent-orange);
+            padding: 20px 25px;
+            margin: 30px 0;
+            border-radius: 8px;
+            color: var(--text-primary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 40px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            background: var(--bg-secondary);
+        }
+
+        .file-path {
+            color: var(--accent-purple);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero">
+        <h1>Shadowed Unit Frames</h1>
+        <p class="subtitle">A lightweight, highly configurable unit frame addon for World of Warcraft.</p>
+        <div style="display: flex; justify-content: center; gap: 10px;">
+            <code>Version: v3.2.12</code>
+            <a href="changelog.html"
+                style="background: var(--bg-tertiary); color: var(--accent-green); text-decoration: none; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; border: 1px solid var(--border-color);">View
+                Changelog</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Overview -->
+        <section id="overview">
+            <h2>Overview</h2>
+            <p>Shadowed Unit Frames (SUF) is a comprehensive unit frame addon that provides fully customizable frames for Player, Target, Party, Raid, and more. It supports custom class colors, tags, auras, and includes features like heal predictions, portraints, and combat text.</p>
+        </section>
+
+        <!-- Class Colors -->
+        <section id="classcolors">
+            <h2>Custom Class Colors</h2>
+            <p>SUF supports custom class colors for both standard and custom server classes. Class colors are configurable through the options panel under <code>General -> Colors -> Class Colors</code>.</p>
+
+            <div class="grid">
+                <div class="card">
+                    <h4>Standard Classes</h4>
+                    <p>All standard WoW classes are supported: Warrior, Paladin, Hunter, Rogue, Priest, Death Knight, Shaman, Mage, Warlock, and Druid.</p>
+                </div>
+                <div class="card">
+                    <h4>Custom Server Classes</h4>
+                    <p>Private servers with custom class systems (such as Ascension) can add their own class tokens for coloring.</p>
+                </div>
+            </div>
+
+            <div class="important">
+                <strong>Ascension Support:</strong> When running on Conquest of Azeroth or other Ascension realms, all 32 class tokens are automatically detected and made available in the class color options.
+            </div>
+        </section>
+
+        <!-- Configuration -->
+        <section id="configuration">
+            <h2>Configuration</h2>
+            <p>All configuration is done through the Shadowed UF Options panel, accessible via the Blizzard options menu or typing <code>/suf</code> in chat.</p>
+
+            <h3>Key Options</h3>
+            <ul>
+                <li><strong>General</strong> - Frame layout, sizing, and global settings</li>
+                <li><strong>Units</strong> - Configure individual unit frames (Player, Target, Party, Raid, etc.)</li>
+                <li><strong>Tags</strong> - Custom text tags using the tag system</li>
+                <li><strong>Auras</strong> - Buff and debuff display settings</li>
+                <li><strong>Colors</strong> - Class colors, health colors, power colors</li>
+            </ul>
+        </section>
+
+        <!-- Tag System -->
+        <section id="tags">
+            <h2>Tag System</h2>
+            <p>SUF includes a powerful tag system that allows you to display dynamic information on unit frames.</p>
+
+            <h3>Available Tags</h3>
+            <pre><code>[name] - Unit name
+[level] - Unit level
+[class] - Class name
+[health] - Current health
+[health:percent] - Health percentage
+[power] - Current power
+[power:percent] - Power percentage
+[status] - Dead/Offline/AFK status
+[guild] - Guild name (if available)</code></pre>
+
+            <h3>Custom Tags</h3>
+            <p>You can create custom tags in the Tags section of the options panel. Tags can include Lua code for advanced formatting.</p>
+        </section>
+
+        <!-- Modules -->
+        <section id="modules">
+            <h2>Modules</h2>
+            <p>SUF is organized into modular components:</p>
+
+            <div class="grid">
+                <div class="card">
+                    <h4>Health</h4>
+                    <p>Health bar coloring and display, including class colors, health predictions, and absorbs.</p>
+                </div>
+                <div class="card">
+                    <h4>Power</h4>
+                    <p>Power bar display for mana, rage, energy, and other power types.</p>
+                </div>
+                <div class="card">
+                    <h4>Auras</h4>
+                    <p>Buff and debuff tracking with filtering, sorting, and highlighting options.</p>
+                </div>
+                <div class="card">
+                    <h4>Portrait</h4>
+                    <p>3D and 2D character portraits on unit frames.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>Maintained by Xurkon</p>
+        <div style="margin-top: 15px; display: flex; justify-content: center; gap: 10px;">
+            <a href="https://www.patreon.com/Xurkon" target="_blank">
+                <img src="https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white" alt="Patreon" height="28">
+            </a>
+            <a href="https://www.paypal.me/Xurkon" target="_blank">
+                <img src="https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white" alt="PayPal" height="28">
+            </a>
+        </div>
+    </footer>
+</body>
+
+</html>

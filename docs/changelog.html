@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadowed Unit Frames - Changelog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #c9d1d9;
+            --text-secondary: #8b949e;
+            --accent-green: #3fb950;
+            --accent-blue: #58a6ff;
+            --accent-purple: #a371f7;
+            --accent-orange: #d29922;
+            --border-color: #30363d;
+            --code-bg: #1b1f23;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1c2128 0%, #0d1117 100%);
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        section {
+            margin-bottom: 80px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--accent-blue);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin: 30px 0 15px;
+            color: var(--text-primary);
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+        }
+
+        code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: var(--code-bg);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: #e6edf3;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .card {
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .card h4 {
+            color: var(--accent-green);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .important {
+            background: rgba(210, 153, 34, 0.1);
+            border-left: 4px solid var(--accent-orange);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .file-path {
+            color: var(--accent-purple);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero">
+        <h1>Shadowed Unit Frames</h1>
+        <p class="subtitle">Complete history of changes, fixes, and additions.</p>
+        <div style="display: flex; justify-content: center; gap: 10px;">
+            <code>Version: v3.2.12</code>
+            <a href="index.html"
+                style="background: var(--bg-tertiary); color: var(--accent-blue); text-decoration: none; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; border: 1px solid var(--border-color);">&larr; Back to Documentation</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 id="unreleased">[Unreleased] &mdash; Custom Class Color Support for Ascension</h2>
+        <ul>
+            <li><strong>[Feature &mdash; Ascension Class Colors]</strong> Added support for all 32 class tokens used by Conquest of Azeroth and other Ascension private servers. Class colors are now dynamically loaded from <code>RAID_CLASS_COLORS</code> at runtime, making all custom classes available in the options panel.</li>
+            <li><strong>[Fix &mdash; Class Color Options Display]</strong> Fixed the class color options UI to properly display all available classes instead of only standard WoW classes. On Ascension realms, all 32 classes now appear in the color configuration panel.</li>
+            <li><strong>[Fix &mdash; Nil Color Fallback]</strong> Added defensive handling in color get/set functions to prevent crashes when accessing colors for classes not in the defaults table. Unknown classes now safely fall back to a default color.</li>
+            <li><strong>[Fix &mdash; PET and VEHICLE Colors]</strong> Ensured PET and VEHICLE pseudo-classes remain visible and configurable on all server types.</li>
+        </ul>
+
+        <hr>
+
+        <h2 id="v3212">v3.2.12 &mdash; Base Release</h2>
+        <ul>
+            <li><strong>[Original]</strong> Shadowed Unit Frames v3.2.12 release by Shadowed.</li>
+            <li><strong>[Documentation]</strong> Added GitHub Pages documentation with index.html and changelog.html for Xurkon's maintained fork.</li>
+        </ul>
+
+    </div>
+
+    <footer>
+        <p>Maintained by Xurkon</p>
+        <div style="margin-top: 15px; display: flex; justify-content: center; gap: 10px;">
+            <a href="https://www.patreon.com/Xurkon" target="_blank">
+                <img src="https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white" alt="Patreon" height="28">
+            </a>
+            <a href="https://www.paypal.me/Xurkon" target="_blank">
+                <img src="https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white" alt="PayPal" height="28">
+            </a>
+        </div>
+    </footer>
+</body>
+
+</html>
